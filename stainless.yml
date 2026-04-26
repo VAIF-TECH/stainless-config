@@ -13,6 +13,14 @@ client_settings:
       type: string
       auth:
         security_scheme: ApiKeyAuth
+    bearer_token:
+      type: string
+      auth:
+        security_scheme: BearerAuth
+
+security:
+  - ApiKeyAuth: []
+  - BearerAuth: []
 
 environments:
   production: https://api.vaif.studio
@@ -53,10 +61,10 @@ resources:
               stream:
                 methods:
                   create: post /ai/copilot/chat/stream
-          contextSummary:
+          context_summary:
             methods:
               retrieve: get /ai/copilot/context-summary/{projectId}
-          creditStatus:
+          credit_status:
             methods:
               retrieve: get /ai/copilot/credit-status/{projectId}
           deploy:
@@ -167,7 +175,7 @@ resources:
                   cancel: post /ai/copilot/job/{jobId}/cancel
               events:
                 methods:
-                  getEvents: get /ai/copilot/job/{jobId}/events
+                  get_events: get /ai/copilot/job/{jobId}/events
               retry:
                 methods:
                   retry: post /ai/copilot/job/{jobId}/retry
@@ -202,13 +210,13 @@ resources:
               retrieve: get /ai/copilot/sessions/{projectId}
               retrieve2: get /ai/copilot/session/{sessionId}
               update: patch /ai/copilot/session/{sessionId}
-          trainingConsent:
+          training_consent:
             methods:
               create: post /ai/copilot/training-consent/{sessionId}
           usage:
             methods:
               retrieve: get /ai/copilot/usage/{projectId}
-          usageOrg:
+          usage_org:
             methods:
               retrieve: get /ai/copilot/usage-org/{orgId}
           versions:
@@ -219,29 +227,29 @@ resources:
               diff:
                 methods:
                   retrieve: get /ai/copilot/version/{versionId}/diff/{compareVersionId}
-  aiUsage:
+  ai_usage:
     subresources:
       org:
         subresources:
           breakdown:
             methods:
-              getBreakdown: get /ai-usage/org/{orgId}/breakdown
-          exhaustionEvents:
+              get_breakdown: get /ai-usage/org/{orgId}/breakdown
+          exhaustion_events:
             methods:
-              getExhaustionEvents: get /ai-usage/org/{orgId}/exhaustion-events
+              get_exhaustion_events: get /ai-usage/org/{orgId}/exhaustion-events
           history:
             methods:
-              getHistory: get /ai-usage/org/{orgId}/history
+              get_history: get /ai-usage/org/{orgId}/history
           recent:
             methods:
-              getRecent: get /ai-usage/org/{orgId}/recent
+              get_recent: get /ai-usage/org/{orgId}/recent
           rollups:
             methods:
-              getRollups: get /ai-usage/org/{orgId}/rollups
+              get_rollups: get /ai-usage/org/{orgId}/rollups
           summary:
             methods:
-              getSummary: get /ai-usage/org/{orgId}/summary
-  alertRules:
+              get_summary: get /ai-usage/org/{orgId}/summary
+  alert_rules:
     methods:
       delete: delete /alert-rules/{ruleId}
       update: put /alert-rules/{ruleId}
@@ -277,7 +285,7 @@ resources:
           token:
             methods:
               create: post /auth/cli/token
-      forgotPassword:
+      forgot_password:
         methods:
           create: post /auth/forgot-password
       login:
@@ -297,7 +305,7 @@ resources:
           context:
             methods:
               list: get /auth/me/context
-          linkedAccounts:
+          linked_accounts:
             methods:
               delete: delete /auth/me/linked-accounts/{provider}
               list: get /auth/me/linked-accounts
@@ -307,20 +315,20 @@ resources:
         subresources:
           callback:
             methods:
-              getCallback: get /auth/oauth/{provider}/callback
+              get_callback: get /auth/oauth/{provider}/callback
           providers:
             methods:
               list: get /auth/oauth/providers
       refresh:
         methods:
           create: post /auth/refresh
-      resetPassword:
+      reset_password:
         methods:
           create: post /auth/reset-password
       signup:
         methods:
           create: post /auth/signup
-      verifyEmail:
+      verify_email:
         subresources:
           confirm:
             methods:
@@ -358,37 +366,37 @@ resources:
             methods:
               addons: post /billing/org/{orgId}/addons
               delete: delete /billing/org/{orgId}/addons/{addonId}
-              getAddons: get /billing/org/{orgId}/addons
+              get_addons: get /billing/org/{orgId}/addons
               update: patch /billing/org/{orgId}/addons/{addonId}
           cancel:
             methods:
               cancel: post /billing/org/{orgId}/cancel
-          changePlan:
+          change_plan:
             methods:
-              changePlan: post /billing/org/{orgId}/change-plan
+              change_plan: post /billing/org/{orgId}/change-plan
           contacts:
             methods:
               contacts: post /billing/org/{orgId}/contacts
               delete: delete /billing/org/{orgId}/contacts/{contactId}
-              getContacts: get /billing/org/{orgId}/contacts
-          costBreakdown:
+              get_contacts: get /billing/org/{orgId}/contacts
+          cost_breakdown:
             methods:
-              getCostBreakdown: get /billing/org/{orgId}/cost-breakdown
+              get_cost_breakdown: get /billing/org/{orgId}/cost-breakdown
           credits:
             methods:
-              getTransactions: get /billing/org/{orgId}/credits/transactions
+              get_transactions: get /billing/org/{orgId}/credits/transactions
               purchase: post /billing/org/{orgId}/credits/purchase
           invoices:
             methods:
-              getInvoices: get /billing/org/{orgId}/invoices
+              get_invoices: get /billing/org/{orgId}/invoices
             subresources:
               pdf:
                 methods:
-                  getPdf: get /billing/org/{orgId}/invoices/{invoiceId}/pdf
+                  get_pdf: get /billing/org/{orgId}/invoices/{invoiceId}/pdf
           overages:
             methods:
-              getHistory: get /billing/org/{orgId}/overages/history
-              getOverages: get /billing/org/{orgId}/overages
+              get_history: get /billing/org/{orgId}/overages/history
+              get_overages: get /billing/org/{orgId}/overages
           pause:
             methods:
               pause: post /billing/org/{orgId}/pause
@@ -403,36 +411,36 @@ resources:
               resume: post /billing/org/{orgId}/resume
           summary:
             methods:
-              getSummary: get /billing/org/{orgId}/summary
-          taxInfo:
+              get_summary: get /billing/org/{orgId}/summary
+          tax_info:
             methods:
-              getTaxInfo: get /billing/org/{orgId}/tax-info
-              taxInfo: put /billing/org/{orgId}/tax-info
+              get_tax_info: get /billing/org/{orgId}/tax-info
+              tax_info: put /billing/org/{orgId}/tax-info
           usage:
             methods:
-              getHistory: get /billing/org/{orgId}/usage/history
-              getRealtime: get /billing/org/{orgId}/usage/realtime
-              getUsage: get /billing/org/{orgId}/usage
-          usageAlerts:
+              get_history: get /billing/org/{orgId}/usage/history
+              get_realtime: get /billing/org/{orgId}/usage/realtime
+              get_usage: get /billing/org/{orgId}/usage
+          usage_alerts:
             methods:
               delete: delete /billing/org/{orgId}/usage-alerts/{alertId}
-              getConfigured: get /billing/org/{orgId}/usage-alerts/configured
-              getHistory: get /billing/org/{orgId}/usage-alerts/history
-              getUsageAlerts: get /billing/org/{orgId}/usage-alerts
+              get_configured: get /billing/org/{orgId}/usage-alerts/configured
+              get_history: get /billing/org/{orgId}/usage-alerts/history
+              get_usage_alerts: get /billing/org/{orgId}/usage-alerts
               update: patch /billing/org/{orgId}/usage-alerts/{alertId}
-              usageAlerts: post /billing/org/{orgId}/usage-alerts
+              usage_alerts: post /billing/org/{orgId}/usage-alerts
       plans:
         methods:
           list: get /billing/plans
       portal:
         methods:
           create: post /billing/portal
-      promoCodes:
+      promo_codes:
         subresources:
           validate:
             methods:
               create: post /billing/promo-codes/validate
-      redeemPromo:
+      redeem_promo:
         methods:
           create: post /billing/redeem-promo
       webhook:
@@ -450,19 +458,19 @@ resources:
       files:
         methods:
           files: delete /buckets/{bucketId}/files
-          getFiles: get /buckets/{bucketId}/files
+          get_files: get /buckets/{bucketId}/files
       project:
         methods:
           retrieve: get /buckets/project/{projectId}
-      signedUrl:
+      signed_url:
         methods:
-          signedUrl: post /buckets/{bucketId}/signed-url
+          signed_url: post /buckets/{bucketId}/signed-url
       upload:
         methods:
           upload: post /buckets/{bucketId}/upload
-      uploadUrl:
+      upload_url:
         methods:
-          uploadUrl: post /buckets/{bucketId}/upload-url
+          upload_url: post /buckets/{bucketId}/upload-url
   cms:
     subresources:
       careers:
@@ -494,7 +502,7 @@ resources:
         subresources:
           balance:
             methods:
-              getBalance: get /credits/org/{orgId}/balance
+              get_balance: get /credits/org/{orgId}/balance
   database:
     subresources:
       connector:
@@ -504,7 +512,7 @@ resources:
               query: post /database/connector/{projectId}/query
           tables:
             methods:
-              getTables: get /database/connector/{projectId}/tables
+              get_tables: get /database/connector/{projectId}/tables
           test:
             methods:
               test: post /database/connector/{projectId}/test
@@ -553,7 +561,7 @@ resources:
           rollback: post /deployments/{deploymentId}/rollback
       steps:
         methods:
-          getSteps: get /deployments/{deploymentId}/steps
+          get_steps: get /deployments/{deploymentId}/steps
       tokens:
         methods:
           create: post /deployments/tokens
@@ -569,13 +577,13 @@ resources:
           create: post /deployments/trigger
   docs:
     subresources:
-      aiAnswer:
+      ai_answer:
         methods:
           create: post /docs/ai-answer
-      aiSearch:
+      ai_search:
         methods:
           list: get /docs/ai-search
-      apiEndpoints:
+      api_endpoints:
         methods:
           list: get /docs/api-endpoints
           retrieve: get /docs/api-endpoints/{id}
@@ -597,7 +605,7 @@ resources:
         subresources:
           quickstart:
             methods:
-              getQuickstart: get /docs/project/{projectId}/quickstart
+              get_quickstart: get /docs/project/{projectId}/quickstart
       sdks:
         methods:
           list: get /docs/sdks
@@ -605,11 +613,11 @@ resources:
         subresources:
           examples:
             methods:
-              getExamples: get /docs/sdks/{sdkId}/examples
+              get_examples: get /docs/sdks/{sdkId}/examples
       search:
         methods:
           list: get /docs/search
-      searchClick:
+      search_click:
         methods:
           create: post /docs/search-click
       v2:
@@ -627,19 +635,19 @@ resources:
         subresources:
           contract:
             methods:
-              getContract: get /enterprise/org/{orgId}/contract
+              get_contract: get /enterprise/org/{orgId}/contract
           invoices:
             methods:
-              getInvoices: get /enterprise/org/{orgId}/invoices
+              get_invoices: get /enterprise/org/{orgId}/invoices
           onboarding:
             methods:
-              getOnboarding: get /enterprise/org/{orgId}/onboarding
+              get_onboarding: get /enterprise/org/{orgId}/onboarding
               onboarding: patch /enterprise/org/{orgId}/onboarding
           usage:
             methods:
-              getHistory: get /enterprise/org/{orgId}/usage/history
-              getProjects: get /enterprise/org/{orgId}/usage/projects
-              getUsage: get /enterprise/org/{orgId}/usage
+              get_history: get /enterprise/org/{orgId}/usage/history
+              get_projects: get /enterprise/org/{orgId}/usage/projects
+              get_usage: get /enterprise/org/{orgId}/usage
       quotes:
         methods:
           retrieve: get /enterprise/quotes/{quoteId}
@@ -666,12 +674,12 @@ resources:
       retrieve: get /functions/{functionId}
       update: patch /functions/{functionId}
     subresources:
-      deployStatus:
+      deploy_status:
         methods:
-          getDeployStatus: get /functions/{functionId}/deploy-status
+          get_deploy_status: get /functions/{functionId}/deploy-status
       invocations:
         methods:
-          getInvocations: get /functions/{functionId}/invocations
+          get_invocations: get /functions/{functionId}/invocations
           list: get /functions/invocations
         subresources:
           function:
@@ -682,10 +690,10 @@ resources:
           invoke: post /functions/{functionIdOrName}/invoke
       logs:
         methods:
-          getLogs: get /functions/{functionId}/logs
+          get_logs: get /functions/{functionId}/logs
       metrics:
         methods:
-          getMetrics: get /functions/{functionId}/metrics
+          get_metrics: get /functions/{functionId}/metrics
       project:
         methods:
           retrieve: get /functions/project/{projectId}
@@ -695,7 +703,7 @@ resources:
               retrieve: get /functions/project/{projectId}/name/{functionName}
       schedule:
         methods:
-          getSchedule: get /functions/{functionId}/schedule
+          get_schedule: get /functions/{functionId}/schedule
           schedule: put /functions/{functionId}/schedule
           schedule2: delete /functions/{functionId}/schedule
       secrets:
@@ -709,14 +717,14 @@ resources:
               retrieve: get /functions/secrets/project/{projectId}
           value:
             methods:
-              getValue: get /functions/secrets/{secretId}/value
+              get_value: get /functions/secrets/{secretId}/value
       source:
         methods:
           source: put /functions/{functionId}/source
       triggers:
         methods:
           delete: delete /functions/triggers/{triggerId}
-          getTriggers: get /functions/{functionId}/triggers
+          get_triggers: get /functions/{functionId}/triggers
           triggers: post /functions/{functionId}/triggers
   generated:
     methods:
@@ -728,7 +736,7 @@ resources:
     subresources:
       aggregate:
         methods:
-          getAggregate: get /generated/{table}/aggregate
+          get_aggregate: get /generated/{table}/aggregate
       bulk:
         methods:
           bulk: post /generated/{table}/bulk
@@ -739,7 +747,7 @@ resources:
           query: post /generated/{table}/query
       search:
         methods:
-          getSearch: get /generated/{table}/search
+          get_search: get /generated/{table}/search
   github:
     subresources:
       oauth:
@@ -766,7 +774,7 @@ resources:
           resolve: post /incidents/{incidentId}/resolve
   infrastructure:
     subresources:
-      pollStatus:
+      poll_status:
         methods:
           create: post /infrastructure/poll-status
       sizes:
@@ -780,10 +788,10 @@ resources:
             subresources:
               events:
                 methods:
-                  getEvents: get /integrations/analytics/project/{projectId}/events
+                  get_events: get /integrations/analytics/project/{projectId}/events
               stats:
                 methods:
-                  getStats: get /integrations/analytics/project/{projectId}/stats
+                  get_stats: get /integrations/analytics/project/{projectId}/stats
       deliveries:
         subresources:
           event:
@@ -835,7 +843,7 @@ resources:
         subresources:
           stream:
             methods:
-              getStream: get /logs/project/{projectId}/stream
+              get_stream: get /logs/project/{projectId}/stream
   maintenance:
     methods:
       list: get /maintenance
@@ -850,16 +858,16 @@ resources:
         subresources:
           overview:
             methods:
-              getOverview: get /metrics/project/{projectId}/overview
+              get_overview: get /metrics/project/{projectId}/overview
   mongodb:
     subresources:
       aggregate:
         methods:
           aggregate: post /mongodb/{collection}/aggregate
           cursor: post /mongodb/{collection}/aggregate/cursor
-      bulkWrite:
+      bulk_write:
         methods:
-          bulkWrite: post /mongodb/{collection}/bulkWrite
+          bulk_write: post /mongodb/{collection}/bulkWrite
       collections:
         methods:
           create: post /mongodb/collections
@@ -883,57 +891,57 @@ resources:
           next:
             methods:
               next: post /mongodb/{collection}/cursor/{cursorId}/next
-      deleteMany:
+      delete_many:
         methods:
-          deleteMany: post /mongodb/{collection}/deleteMany
-      deleteOne:
+          delete_many: post /mongodb/{collection}/deleteMany
+      delete_one:
         methods:
-          deleteOne: post /mongodb/{collection}/deleteOne
+          delete_one: post /mongodb/{collection}/deleteOne
       distinct:
         methods:
           distinct: post /mongodb/{collection}/distinct
-      estimatedCount:
+      estimated_count:
         methods:
-          getEstimatedCount: get /mongodb/{collection}/estimatedCount
+          get_estimated_count: get /mongodb/{collection}/estimatedCount
       find:
         methods:
           cursor: post /mongodb/{collection}/find/cursor
           find: post /mongodb/{collection}/find
-      findById:
+      find_by_id:
         methods:
           retrieve: get /mongodb/{collection}/findById/{id}
-      findOne:
+      find_one:
         methods:
-          findOne: post /mongodb/{collection}/findOne
-      findOneAndDelete:
+          find_one: post /mongodb/{collection}/findOne
+      find_one_and_delete:
         methods:
-          findOneAndDelete: post /mongodb/{collection}/findOneAndDelete
-      findOneAndReplace:
+          find_one_and_delete: post /mongodb/{collection}/findOneAndDelete
+      find_one_and_replace:
         methods:
-          findOneAndReplace: post /mongodb/{collection}/findOneAndReplace
-      findOneAndUpdate:
+          find_one_and_replace: post /mongodb/{collection}/findOneAndReplace
+      find_one_and_update:
         methods:
-          findOneAndUpdate: post /mongodb/{collection}/findOneAndUpdate
+          find_one_and_update: post /mongodb/{collection}/findOneAndUpdate
       indexes:
         methods:
           delete: delete /mongodb/{collection}/indexes/{indexName}
-          getIndexes: get /mongodb/{collection}/indexes
+          get_indexes: get /mongodb/{collection}/indexes
           indexes: post /mongodb/{collection}/indexes
-      insertMany:
+      insert_many:
         methods:
-          insertMany: post /mongodb/{collection}/insertMany
-      insertOne:
+          insert_many: post /mongodb/{collection}/insertMany
+      insert_one:
         methods:
-          insertOne: post /mongodb/{collection}/insertOne
-      replaceOne:
+          insert_one: post /mongodb/{collection}/insertOne
+      replace_one:
         methods:
-          replaceOne: post /mongodb/{collection}/replaceOne
-      updateMany:
+          replace_one: post /mongodb/{collection}/replaceOne
+      update_many:
         methods:
-          updateMany: post /mongodb/{collection}/updateMany
-      updateOne:
+          update_many: post /mongodb/{collection}/updateMany
+      update_one:
         methods:
-          updateOne: post /mongodb/{collection}/updateOne
+          update_one: post /mongodb/{collection}/updateOne
   oauth:
     subresources:
       callback:
@@ -953,7 +961,7 @@ resources:
             subresources:
               authorize:
                 methods:
-                  getAuthorize: get /oauth/org/{orgId}/provider/{provider}/authorize
+                  get_authorize: get /oauth/org/{orgId}/provider/{provider}/authorize
               refresh:
                 methods:
                   refresh: post /oauth/org/{orgId}/provider/{provider}/refresh
@@ -963,12 +971,12 @@ resources:
         methods:
           retrieve: get /onboarding/org/{orgId}
         subresources:
-          autoSetup:
+          auto_setup:
             methods:
-              autoSetup: post /onboarding/org/{orgId}/auto-setup
-          completeStep:
+              auto_setup: post /onboarding/org/{orgId}/auto-setup
+          complete_step:
             methods:
-              completeStep: post /onboarding/org/{orgId}/complete-step
+              complete_step: post /onboarding/org/{orgId}/complete-step
   openapi:
     subresources:
       full:
@@ -982,32 +990,32 @@ resources:
       create: post /orgs/
       list: get /orgs/
     subresources:
-      billingContacts:
+      billing_contacts:
         methods:
-          billingContacts: post /orgs/{orgId}/billing-contacts
+          billing_contacts: post /orgs/{orgId}/billing-contacts
           delete: delete /orgs/{orgId}/billing-contacts/{contactId}
-          getBillingContacts: get /orgs/{orgId}/billing-contacts
-      checkName:
+          get_billing_contacts: get /orgs/{orgId}/billing-contacts
+      check_name:
         methods:
           list: get /orgs/check-name
       invites:
         methods:
           delete: delete /orgs/{orgId}/invites/{inviteId}
-          getInvites: get /orgs/{orgId}/invites
+          get_invites: get /orgs/{orgId}/invites
         subresources:
           accept:
             methods:
               create: post /orgs/invites/accept
       members:
         methods:
-          getMembers: get /orgs/{orgId}/members
+          get_members: get /orgs/{orgId}/members
           invite: post /orgs/{orgId}/members/invite
       membership:
         methods:
-          getMembership: get /orgs/{orgId}/membership
+          get_membership: get /orgs/{orgId}/membership
       profile:
         methods:
-          getProfile: get /orgs/{orgId}/profile
+          get_profile: get /orgs/{orgId}/profile
           profile: patch /orgs/{orgId}/profile
   plans:
     methods:
@@ -1024,7 +1032,7 @@ resources:
           create: post /plans/save
   pricing:
     subresources:
-      aiFeatures:
+      ai_features:
         methods:
           list: get /pricing/ai-features
       compare:
@@ -1045,10 +1053,10 @@ resources:
       retrieve: get /projects/{projectId}
       update: patch /projects/{projectId}
     subresources:
-      apiKeys:
+      api_keys:
         methods:
-          apiKeys: post /projects/{projectId}/api-keys
-          getApiKeys: get /projects/{projectId}/api-keys
+          api_keys: post /projects/{projectId}/api-keys
+          get_api_keys: get /projects/{projectId}/api-keys
           update: patch /projects/{projectId}/api-keys/{keyId}
         subresources:
           revoke:
@@ -1061,141 +1069,141 @@ resources:
         methods:
           confirm: post /projects/{projectId}/auth/verify-email/confirm
           delete: delete /projects/{projectId}/auth/oauth-apps/{provider}
-          forgotPassword: post /projects/{projectId}/auth/forgot-password
-          getMe: get /projects/{projectId}/auth/me
-          getOauthApps: get /projects/{projectId}/auth/oauth-apps
-          getSettings: get /projects/{projectId}/auth/settings
+          forgot_password: post /projects/{projectId}/auth/forgot-password
+          get_me: get /projects/{projectId}/auth/me
+          get_oauth_apps: get /projects/{projectId}/auth/oauth-apps
+          get_settings: get /projects/{projectId}/auth/settings
           login: post /projects/{projectId}/auth/login
           logout: post /projects/{projectId}/auth/logout
           refresh: post /projects/{projectId}/auth/refresh
-          resetPassword: post /projects/{projectId}/auth/reset-password
+          reset_password: post /projects/{projectId}/auth/reset-password
           send: post /projects/{projectId}/auth/verify-email/send
           settings: patch /projects/{projectId}/auth/settings
           signup: post /projects/{projectId}/auth/signup
-          syncUsers: post /projects/{projectId}/auth/sync-users
+          sync_users: post /projects/{projectId}/auth/sync-users
           update: put /projects/{projectId}/auth/oauth-apps/{provider}
       database:
         methods:
           dedicated: post /projects/{projectId}/database/dedicated
           dedicated2: delete /projects/{projectId}/database/dedicated
-          getConnection: get /projects/{projectId}/database/dedicated/connection
-          getDedicated: get /projects/{projectId}/database/dedicated
-          getStatus: get /projects/{projectId}/database/dedicated/status
+          get_connection: get /projects/{projectId}/database/dedicated/connection
+          get_dedicated: get /projects/{projectId}/database/dedicated
+          get_status: get /projects/{projectId}/database/dedicated/status
           restart: post /projects/{projectId}/database/dedicated/restart
-      envVars:
+      env_vars:
         methods:
           delete: delete /projects/{projectId}/env-vars/{envVarId}
-          envVars: post /projects/{projectId}/env-vars
-          getEnvVars: get /projects/{projectId}/env-vars
+          env_vars: post /projects/{projectId}/env-vars
+          get_env_vars: get /projects/{projectId}/env-vars
           update: patch /projects/{projectId}/env-vars/{envVarId}
         subresources:
           value:
             methods:
-              getValue: get /projects/{projectId}/env-vars/{envVarId}/value
+              get_value: get /projects/{projectId}/env-vars/{envVarId}/value
       environments:
         methods:
-          backfillUrls: post /projects/{projectId}/environments/backfill-urls
+          backfill_urls: post /projects/{projectId}/environments/backfill-urls
           bootstrap: post /projects/{projectId}/environments/bootstrap
           delete: delete /projects/{projectId}/environments/{envId}
           environments: post /projects/{projectId}/environments
-          getEnvironments: get /projects/{projectId}/environments
+          get_environments: get /projects/{projectId}/environments
           update: patch /projects/{projectId}/environments/{envId}
         subresources:
-          domainStatus:
+          domain_status:
             methods:
-              getDomainStatus: get /projects/{projectId}/environments/{envId}/domain-status
-          domainVerification:
+              get_domain_status: get /projects/{projectId}/environments/{envId}/domain-status
+          domain_verification:
             methods:
-              getDomainVerification: get /projects/{projectId}/environments/{envId}/domain-verification
-          provisionSsl:
+              get_domain_verification: get /projects/{projectId}/environments/{envId}/domain-verification
+          provision_ssl:
             methods:
-              provisionSsl: post /projects/{projectId}/environments/{envId}/provision-ssl
-          verifyCname:
+              provision_ssl: post /projects/{projectId}/environments/{envId}/provision-ssl
+          verify_cname:
             methods:
-              verifyCname: post /projects/{projectId}/environments/{envId}/verify-cname
-          verifyDomain:
+              verify_cname: post /projects/{projectId}/environments/{envId}/verify-cname
+          verify_domain:
             methods:
-              verifyDomain: post /projects/{projectId}/environments/{envId}/verify-domain
+              verify_domain: post /projects/{projectId}/environments/{envId}/verify-domain
       github:
         methods:
           branch: post /projects/{projectId}/github/branch
           connect: post /projects/{projectId}/github/connect
           disconnect: delete /projects/{projectId}/github/disconnect
-          getBranches: get /projects/{projectId}/github/branches
-          getRepos: get /projects/{projectId}/github/repos
-          getStatus: get /projects/{projectId}/github/status
-          getTrackedRepos: get /projects/{projectId}/github/tracked-repos
+          get_branches: get /projects/{projectId}/github/branches
+          get_repos: get /projects/{projectId}/github/repos
+          get_status: get /projects/{projectId}/github/status
+          get_tracked_repos: get /projects/{projectId}/github/tracked-repos
           pull: post /projects/{projectId}/github/pull
           push: post /projects/{projectId}/github/push
       infrastructure:
         methods:
           delete: delete /projects/{projectId}/infrastructure/{instanceId}
-          getInfrastructure: get /projects/{projectId}/infrastructure
-          getMigrationStatus: get /projects/{projectId}/infrastructure/migration-status
-          getProgress: get /projects/{projectId}/infrastructure/migration/progress
+          get_infrastructure: get /projects/{projectId}/infrastructure
+          get_migration_status: get /projects/{projectId}/infrastructure/migration-status
+          get_progress: get /projects/{projectId}/infrastructure/migration/progress
           provision: post /projects/{projectId}/infrastructure/provision
-          provisionCustom: post /projects/{projectId}/infrastructure/provision-custom
+          provision_custom: post /projects/{projectId}/infrastructure/provision-custom
           retry: post /projects/{projectId}/infrastructure/migration/retry
           rollback: post /projects/{projectId}/infrastructure/migration/rollback
         subresources:
           metrics:
             methods:
-              getMetrics: get /projects/{projectId}/infrastructure/{instanceId}/metrics
-          migrateNow:
+              get_metrics: get /projects/{projectId}/infrastructure/{instanceId}/metrics
+          migrate_now:
             methods:
-              migrateNow: post /projects/{projectId}/infrastructure/{instanceId}/migrate-now
+              migrate_now: post /projects/{projectId}/infrastructure/{instanceId}/migrate-now
           replicas:
             methods:
-              getReplicas: get /projects/{projectId}/infrastructure/{instanceId}/replicas
+              get_replicas: get /projects/{projectId}/infrastructure/{instanceId}/replicas
               replica: post /projects/{projectId}/infrastructure/{instanceId}/replica
           resize:
             methods:
               resize: post /projects/{projectId}/infrastructure/{instanceId}/resize
-          resizeCustom:
+          resize_custom:
             methods:
-              resizeCustom: post /projects/{projectId}/infrastructure/{instanceId}/resize-custom
+              resize_custom: post /projects/{projectId}/infrastructure/{instanceId}/resize-custom
           start:
             methods:
               start: post /projects/{projectId}/infrastructure/{instanceId}/start
           stop:
             methods:
               stop: post /projects/{projectId}/infrastructure/{instanceId}/stop
-          upgradeOptions:
+          upgrade_options:
             methods:
-              getUpgradeOptions: get /projects/{projectId}/infrastructure/{instanceId}/upgrade-options
+              get_upgrade_options: get /projects/{projectId}/infrastructure/{instanceId}/upgrade-options
       members:
         methods:
           delete: delete /projects/{projectId}/members/{userId}
-          getMembers: get /projects/{projectId}/members
+          get_members: get /projects/{projectId}/members
           members: post /projects/{projectId}/members
       region:
         methods:
-          getRegion: get /projects/{projectId}/region
+          get_region: get /projects/{projectId}/region
           region: post /projects/{projectId}/region
       settings:
         methods:
           addons: patch /projects/{projectId}/settings/addons
           api: patch /projects/{projectId}/settings/api
           compute: patch /projects/{projectId}/settings/compute
-          getAddons: get /projects/{projectId}/settings/addons
-          getApi: get /projects/{projectId}/settings/api
-          getCompute: get /projects/{projectId}/settings/compute
-          getJwt: get /projects/{projectId}/settings/jwt
-          getSettings: get /projects/{projectId}/settings
+          get_addons: get /projects/{projectId}/settings/addons
+          get_api: get /projects/{projectId}/settings/api
+          get_compute: get /projects/{projectId}/settings/compute
+          get_jwt: get /projects/{projectId}/settings/jwt
+          get_settings: get /projects/{projectId}/settings
           jwt: patch /projects/{projectId}/settings/jwt
           rotate: post /projects/{projectId}/settings/jwt/rotate
       storage:
         methods:
-          getSettings: get /projects/{projectId}/storage/settings
+          get_settings: get /projects/{projectId}/storage/settings
           settings: patch /projects/{projectId}/storage/settings
       terminal:
         methods:
           exec: post /projects/{projectId}/terminal/exec
-          getSessions: get /projects/{projectId}/terminal/sessions
+          get_sessions: get /projects/{projectId}/terminal/sessions
       users:
         methods:
           delete: delete /projects/{projectId}/users/{userId}
-          getUsers: get /projects/{projectId}/users
+          get_users: get /projects/{projectId}/users
           retrieve: get /projects/{projectId}/users/{userId}
           update: patch /projects/{projectId}/users/{userId}
           users: post /projects/{projectId}/users
@@ -1206,8 +1214,8 @@ resources:
           sessions:
             methods:
               delete: delete /projects/{projectId}/users/{userId}/sessions/{sessionId}
-              getSessions: get /projects/{projectId}/users/{userId}/sessions
-              revokeAll: post /projects/{projectId}/users/{userId}/sessions/revoke-all
+              get_sessions: get /projects/{projectId}/users/{userId}/sessions
+              revoke_all: post /projects/{projectId}/users/{userId}/sessions/revoke-all
           unban:
             methods:
               unban: post /projects/{projectId}/users/{userId}/unban
@@ -1219,7 +1227,7 @@ resources:
         subresources:
           json:
             methods:
-              getJson: get /quickstart/project/{projectId}/json
+              get_json: get /quickstart/project/{projectId}/json
   realtime:
     subresources:
       connections:
@@ -1227,7 +1235,7 @@ resources:
           project:
             methods:
               retrieve: get /realtime/connections/project/{projectId}
-      enableAll:
+      enable_all:
         methods:
           create: post /realtime/enable-all
       events:
@@ -1279,7 +1287,7 @@ resources:
               create: post /regions/health/check
       metrics:
         methods:
-          getMetrics: get /regions/{key}/metrics
+          get_metrics: get /regions/{key}/metrics
   rls:
     subresources:
       policies:
@@ -1292,14 +1300,14 @@ resources:
           toggle:
             methods:
               toggle: post /rls/policies/{policyId}/toggle
-  schemaEngine:
+  schema_engine:
     subresources:
       apply:
         methods:
           create: post /schema-engine/apply
       changes:
         methods:
-          getChanges: get /schema-engine/{projectId}/changes
+          get_changes: get /schema-engine/{projectId}/changes
       introspect:
         methods:
           retrieve: get /schema-engine/introspect/{projectId}
@@ -1380,7 +1388,7 @@ resources:
           policies:
             methods:
               delete: delete /storage/buckets/{bucketId}/policies/{policyId}
-              getPolicies: get /storage/buckets/{bucketId}/policies
+              get_policies: get /storage/buckets/{bucketId}/policies
               policies: post /storage/buckets/{bucketId}/policies
               update: put /storage/buckets/{bucketId}/policies/{policyId}
             subresources:
@@ -1390,7 +1398,7 @@ resources:
       download:
         methods:
           list: get /storage/download
-      downloadUrl:
+      download_url:
         methods:
           create: post /storage/download-url
       files:
@@ -1398,12 +1406,12 @@ resources:
           copy:
             methods:
               create: post /storage/files/copy
-          deleteBatch:
+          delete_batch:
             methods:
               create: post /storage/files/delete-batch
           metadata:
             methods:
-              getMetadata: get /storage/files/{bucketId}/metadata
+              get_metadata: get /storage/files/{bucketId}/metadata
               metadata: patch /storage/files/{bucketId}/metadata
           move:
             methods:
@@ -1419,19 +1427,19 @@ resources:
           create:
             methods:
               create: post /storage/multipart/create
-          partUrl:
+          part_url:
             methods:
-              partUrl: post /storage/multipart/{uploadId}/part-url
+              part_url: post /storage/multipart/{uploadId}/part-url
       upload:
         methods:
           create: post /storage/upload
-      uploadBase64:
+      upload_base64:
         methods:
           create: post /storage/upload-base64
-      uploadFromUrl:
+      upload_from_url:
         methods:
           create: post /storage/upload-from-url
-      uploadUrl:
+      upload_url:
         methods:
           create: post /storage/upload-url
   templates:
@@ -1440,7 +1448,7 @@ resources:
       list: get /templates/
       retrieve: get /templates/{slug}
     subresources:
-      createProject:
+      create_project:
         methods:
           create: post /templates/create-project
       install:
@@ -1461,14 +1469,14 @@ resources:
           list: get /users/me
           update: patch /users/me
         subresources:
-          changePassword:
+          change_password:
             methods:
               create: post /users/me/change-password
           preferences:
             methods:
               list: get /users/me/preferences
               update: patch /users/me/preferences
-          requestAccountDelete:
+          request_account_delete:
             methods:
               create: post /users/me/request-account-delete
   v1:
