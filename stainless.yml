@@ -1,0 +1,1482 @@
+# stainless.yml — generated from apps/api/openapi.json
+# Source spec: openapi 3.1.0, info "VAIF Studio API"
+# This is a starter mapping. Refine method names + nesting as needed.
+
+organization:
+  name: vaif
+  docs: https://docs.vaif.studio
+  contact: support@vaif.tech
+
+client_settings:
+  opts:
+    api_key:
+      type: string
+      auth:
+        security_scheme: ApiKeyAuth
+
+environments:
+  production:
+    url: https://api.vaif.studio
+
+resources:
+  activation:
+    subresources:
+      org:
+        methods:
+          retrieve: get /activation/org/{orgId}
+  ai:
+    subresources:
+      copilot:
+        subresources:
+          chat:
+            methods:
+              create: post /ai/copilot/chat
+            subresources:
+              stream:
+                methods:
+                  create: post /ai/copilot/chat/stream
+          contextSummary:
+            methods:
+              retrieve: get /ai/copilot/context-summary/{projectId}
+          creditStatus:
+            methods:
+              retrieve: get /ai/copilot/credit-status/{projectId}
+          deploy:
+            methods:
+              create: post /ai/copilot/deploy
+              retrieve: get /ai/copilot/deploy/{deployId}
+            subresources:
+              history:
+                methods:
+                  retrieve: get /ai/copilot/deploy/history/{projectId}
+              rollback:
+                methods:
+                  rollback: post /ai/copilot/deploy/{deployId}/rollback
+          editor:
+            subresources:
+              chat:
+                methods:
+                  create: post /ai/copilot/editor/chat
+          execute:
+            methods:
+              create: post /ai/copilot/execute
+          execution:
+            methods:
+              retrieve: get /ai/copilot/execution/{executionId}
+            subresources:
+              pause:
+                methods:
+                  pause: post /ai/copilot/execution/{executionId}/pause
+              resume:
+                methods:
+                  resume: post /ai/copilot/execution/{executionId}/resume
+              rollback:
+                methods:
+                  rollback: post /ai/copilot/execution/{executionId}/rollback
+          executions:
+            methods:
+              retrieve: get /ai/copilot/executions/{sessionId}
+          export:
+            methods:
+              create: post /ai/copilot/export/{versionId}
+            subresources:
+              docker:
+                methods:
+                  create: post /ai/copilot/export/docker
+              github:
+                methods:
+                  create: post /ai/copilot/export/github
+              terraform:
+                subresources:
+                  aws:
+                    methods:
+                      create: post /ai/copilot/export/terraform/aws
+                  gcp:
+                    methods:
+                      create: post /ai/copilot/export/terraform/gcp
+              zip:
+                methods:
+                  create: post /ai/copilot/export/zip
+          feedback:
+            methods:
+              create: post /ai/copilot/feedback
+          generation:
+            subresources:
+              cancel:
+                methods:
+                  cancel: post /ai/copilot/generation/{manifestId}/cancel
+              resume:
+                methods:
+                  create: post /ai/copilot/generation/resume
+          git:
+            subresources:
+              branch:
+                methods:
+                  create: post /ai/copilot/git/branch
+              branches:
+                methods:
+                  retrieve: get /ai/copilot/git/branches/{sessionId}
+              clone:
+                methods:
+                  create: post /ai/copilot/git/clone
+              commit:
+                methods:
+                  create: post /ai/copilot/git/commit
+              files:
+                methods:
+                  retrieve: get /ai/copilot/git/files/{sessionId}
+              init:
+                methods:
+                  create: post /ai/copilot/git/init
+              log:
+                methods:
+                  retrieve: get /ai/copilot/git/log/{sessionId}
+              pull:
+                methods:
+                  create: post /ai/copilot/git/pull
+              push:
+                methods:
+                  create: post /ai/copilot/git/push
+              read:
+                methods:
+                  retrieve: get /ai/copilot/git/read/{sessionId}/{*}
+              status:
+                methods:
+                  retrieve: get /ai/copilot/git/status/{sessionId}
+              write:
+                methods:
+                  create: post /ai/copilot/git/write
+          job:
+            methods:
+              create: post /ai/copilot/job
+              retrieve: get /ai/copilot/job/{jobId}
+            subresources:
+              cancel:
+                methods:
+                  cancel: post /ai/copilot/job/{jobId}/cancel
+              events:
+                methods:
+                  getEvents: get /ai/copilot/job/{jobId}/events
+              retry:
+                methods:
+                  retry: post /ai/copilot/job/{jobId}/retry
+          manifest:
+            methods:
+              retrieve: get /ai/copilot/manifest/{manifestId}
+            subresources:
+              pause:
+                methods:
+                  pause: post /ai/copilot/manifest/{manifestId}/pause
+          memories:
+            subresources:
+              promote:
+                methods:
+                  promote: post /ai/copilot/memories/{memoryId}/promote
+          metrics:
+            methods:
+              retrieve: get /ai/copilot/metrics/{projectId}
+            subresources:
+              org:
+                methods:
+                  retrieve: get /ai/copilot/metrics/org/{orgId}
+          models:
+            methods:
+              retrieve: get /ai/copilot/models/{projectId}
+          rate:
+            methods:
+              create: post /ai/copilot/rate/{messageId}
+          session:
+            methods:
+              delete: delete /ai/copilot/session/{sessionId}
+              retrieve: get /ai/copilot/session/{sessionId}
+              update: patch /ai/copilot/session/{sessionId}
+          sessions:
+            methods:
+              retrieve: get /ai/copilot/sessions/{projectId}
+          trainingConsent:
+            methods:
+              create: post /ai/copilot/training-consent/{sessionId}
+          usage:
+            methods:
+              retrieve: get /ai/copilot/usage/{projectId}
+          usageOrg:
+            methods:
+              retrieve: get /ai/copilot/usage-org/{orgId}
+          version:
+            methods:
+              retrieve: get /ai/copilot/version/{versionId}
+            subresources:
+              diff:
+                methods:
+                  retrieve: get /ai/copilot/version/{versionId}/diff/{compareVersionId}
+          versions:
+            methods:
+              retrieve: get /ai/copilot/versions/{sessionId}
+  aiUsage:
+    subresources:
+      org:
+        subresources:
+          breakdown:
+            methods:
+              getBreakdown: get /ai-usage/org/{orgId}/breakdown
+          exhaustionEvents:
+            methods:
+              getExhaustionEvents: get /ai-usage/org/{orgId}/exhaustion-events
+          history:
+            methods:
+              getHistory: get /ai-usage/org/{orgId}/history
+          recent:
+            methods:
+              getRecent: get /ai-usage/org/{orgId}/recent
+          rollups:
+            methods:
+              getRollups: get /ai-usage/org/{orgId}/rollups
+          summary:
+            methods:
+              getSummary: get /ai-usage/org/{orgId}/summary
+  alertRules:
+    methods:
+      delete: delete /alert-rules/{ruleId}
+      update: put /alert-rules/{ruleId}
+    subresources:
+      project:
+        methods:
+          create: post /alert-rules/project/{projectId}
+          retrieve: get /alert-rules/project/{projectId}
+  announcements:
+    methods:
+      list: get /announcements
+  audit:
+    subresources:
+      org:
+        methods:
+          retrieve: get /audit/org/{orgId}
+      project:
+        methods:
+          retrieve: get /audit/project/{projectId}
+  auth:
+    subresources:
+      cli:
+        subresources:
+          authorize:
+            methods:
+              create: post /auth/cli/authorize
+          callback:
+            methods:
+              create: post /auth/cli/callback
+          login:
+            methods:
+              create: post /auth/cli/login
+          token:
+            methods:
+              create: post /auth/cli/token
+      forgotPassword:
+        methods:
+          create: post /auth/forgot-password
+      login:
+        methods:
+          create: post /auth/login
+      logout:
+        methods:
+          create: post /auth/logout
+      me:
+        methods:
+          list: get /auth/me
+          update: patch /auth/me
+        subresources:
+          admin:
+            methods:
+              list: get /auth/me/admin
+          context:
+            methods:
+              list: get /auth/me/context
+          linkedAccounts:
+            methods:
+              delete: delete /auth/me/linked-accounts/{provider}
+              list: get /auth/me/linked-accounts
+      oauth:
+        methods:
+          retrieve: get /auth/oauth/{provider}
+        subresources:
+          callback:
+            methods:
+              getCallback: get /auth/oauth/{provider}/callback
+          providers:
+            methods:
+              list: get /auth/oauth/providers
+      refresh:
+        methods:
+          create: post /auth/refresh
+      resetPassword:
+        methods:
+          create: post /auth/reset-password
+      signup:
+        methods:
+          create: post /auth/signup
+      verifyEmail:
+        subresources:
+          confirm:
+            methods:
+              create: post /auth/verify-email/confirm
+          send:
+            methods:
+              create: post /auth/verify-email/send
+  billing:
+    subresources:
+      addons:
+        subresources:
+          catalog:
+            methods:
+              list: get /billing/addons/catalog
+      checkout:
+        methods:
+          create: post /billing/checkout
+        subresources:
+          verify:
+            methods:
+              retrieve: get /billing/checkout/verify/{sessionId}
+      credits:
+        subresources:
+          packages:
+            methods:
+              list: get /billing/credits/packages
+      enterprise:
+        subresources:
+          inquiry:
+            methods:
+              create: post /billing/enterprise/inquiry
+      org:
+        subresources:
+          addons:
+            methods:
+              addons: post /billing/org/{orgId}/addons
+              delete: delete /billing/org/{orgId}/addons/{addonId}
+              getAddons: get /billing/org/{orgId}/addons
+              update: patch /billing/org/{orgId}/addons/{addonId}
+          cancel:
+            methods:
+              cancel: post /billing/org/{orgId}/cancel
+          changePlan:
+            methods:
+              changePlan: post /billing/org/{orgId}/change-plan
+          contacts:
+            methods:
+              contacts: post /billing/org/{orgId}/contacts
+              delete: delete /billing/org/{orgId}/contacts/{contactId}
+              getContacts: get /billing/org/{orgId}/contacts
+          costBreakdown:
+            methods:
+              getCostBreakdown: get /billing/org/{orgId}/cost-breakdown
+          credits:
+            methods:
+              getTransactions: get /billing/org/{orgId}/credits/transactions
+              purchase: post /billing/org/{orgId}/credits/purchase
+          invoices:
+            methods:
+              getInvoices: get /billing/org/{orgId}/invoices
+            subresources:
+              pdf:
+                methods:
+                  getPdf: get /billing/org/{orgId}/invoices/{invoiceId}/pdf
+          overages:
+            methods:
+              getHistory: get /billing/org/{orgId}/overages/history
+              getOverages: get /billing/org/{orgId}/overages
+          pause:
+            methods:
+              pause: post /billing/org/{orgId}/pause
+          portal:
+            methods:
+              portal: post /billing/org/{orgId}/portal
+          reactivate:
+            methods:
+              reactivate: post /billing/org/{orgId}/reactivate
+          resume:
+            methods:
+              resume: post /billing/org/{orgId}/resume
+          summary:
+            methods:
+              getSummary: get /billing/org/{orgId}/summary
+          taxInfo:
+            methods:
+              getTaxInfo: get /billing/org/{orgId}/tax-info
+              taxInfo: put /billing/org/{orgId}/tax-info
+          usage:
+            methods:
+              getHistory: get /billing/org/{orgId}/usage/history
+              getRealtime: get /billing/org/{orgId}/usage/realtime
+              getUsage: get /billing/org/{orgId}/usage
+          usageAlerts:
+            methods:
+              delete: delete /billing/org/{orgId}/usage-alerts/{alertId}
+              getConfigured: get /billing/org/{orgId}/usage-alerts/configured
+              getHistory: get /billing/org/{orgId}/usage-alerts/history
+              getUsageAlerts: get /billing/org/{orgId}/usage-alerts
+              update: patch /billing/org/{orgId}/usage-alerts/{alertId}
+              usageAlerts: post /billing/org/{orgId}/usage-alerts
+      plans:
+        methods:
+          list: get /billing/plans
+      portal:
+        methods:
+          create: post /billing/portal
+      promoCodes:
+        subresources:
+          validate:
+            methods:
+              create: post /billing/promo-codes/validate
+      redeemPromo:
+        methods:
+          create: post /billing/redeem-promo
+      webhook:
+        methods:
+          create: post /billing/webhook
+  bootstrap:
+    methods:
+      list: get /bootstrap/
+  buckets:
+    methods:
+      delete: delete /buckets/{bucketId}
+      retrieve: get /buckets/{bucketId}
+      update: put /buckets/{bucketId}
+    subresources:
+      files:
+        methods:
+          files: delete /buckets/{bucketId}/files
+          getFiles: get /buckets/{bucketId}/files
+      project:
+        methods:
+          retrieve: get /buckets/project/{projectId}
+      signedUrl:
+        methods:
+          signedUrl: post /buckets/{bucketId}/signed-url
+      upload:
+        methods:
+          upload: post /buckets/{bucketId}/upload
+      uploadUrl:
+        methods:
+          uploadUrl: post /buckets/{bucketId}/upload-url
+  cms:
+    subresources:
+      careers:
+        methods:
+          list: get /cms/careers
+      faqs:
+        methods:
+          retrieve: get /cms/faqs/{pageSlug}
+      pages:
+        methods:
+          retrieve: get /cms/pages/{slug}
+      partners:
+        methods:
+          list: get /cms/partners
+      team:
+        methods:
+          list: get /cms/team
+      testimonials:
+        methods:
+          list: get /cms/testimonials
+  contact:
+    methods:
+      create: post /contact
+  credits:
+    subresources:
+      org:
+        methods:
+          retrieve: get /credits/org/{orgId}
+        subresources:
+          balance:
+            methods:
+              getBalance: get /credits/org/{orgId}/balance
+  database:
+    subresources:
+      connector:
+        subresources:
+          query:
+            methods:
+              query: post /database/connector/{projectId}/query
+          tables:
+            methods:
+              getTables: get /database/connector/{projectId}/tables
+          test:
+            methods:
+              test: post /database/connector/{projectId}/test
+      extensions:
+        subresources:
+          available:
+            methods:
+              list: get /database/extensions/available
+          project:
+            methods:
+              delete: delete /database/extensions/project/{projectId}/{extensionId}
+              retrieve: get /database/extensions/project/{projectId}
+            subresources:
+              install:
+                methods:
+                  install: post /database/extensions/project/{projectId}/install
+      tiers:
+        methods:
+          list: get /database/tiers
+      wrappers:
+        subresources:
+          available:
+            methods:
+              list: get /database/wrappers/available
+          project:
+            methods:
+              delete: delete /database/wrappers/project/{projectId}/{wrapperId}
+              retrieve: get /database/wrappers/project/{projectId}
+              update: patch /database/wrappers/project/{projectId}/{wrapperId}
+            subresources:
+              install:
+                methods:
+                  install: post /database/wrappers/project/{projectId}/install
+  deployments:
+    methods:
+      retrieve: get /deployments/{deploymentId}
+    subresources:
+      project:
+        methods:
+          retrieve: get /deployments/project/{projectId}
+      promote:
+        methods:
+          create: post /deployments/promote
+      rollback:
+        methods:
+          rollback: post /deployments/{deploymentId}/rollback
+      steps:
+        methods:
+          getSteps: get /deployments/{deploymentId}/steps
+      tokens:
+        methods:
+          create: post /deployments/tokens
+        subresources:
+          project:
+            methods:
+              retrieve: get /deployments/tokens/project/{projectId}
+          revoke:
+            methods:
+              revoke: post /deployments/tokens/{tokenId}/revoke
+      trigger:
+        methods:
+          create: post /deployments/trigger
+  docs:
+    subresources:
+      aiAnswer:
+        methods:
+          create: post /docs/ai-answer
+      aiSearch:
+        methods:
+          list: get /docs/ai-search
+      apiEndpoints:
+        methods:
+          list: get /docs/api-endpoints
+          retrieve: get /docs/api-endpoints/{id}
+      categories:
+        methods:
+          list: get /docs/categories
+      changelog:
+        methods:
+          list: get /docs/changelog
+          retrieve: get /docs/changelog/{id}
+      examples:
+        methods:
+          list: get /docs/examples
+          retrieve: get /docs/examples/{slug}
+      feedback:
+        methods:
+          create: post /docs/feedback
+      project:
+        subresources:
+          quickstart:
+            methods:
+              getQuickstart: get /docs/project/{projectId}/quickstart
+      sdks:
+        methods:
+          list: get /docs/sdks
+          retrieve: get /docs/sdks/{platform}
+        subresources:
+          examples:
+            methods:
+              getExamples: get /docs/sdks/{sdkId}/examples
+      search:
+        methods:
+          list: get /docs/search
+      searchClick:
+        methods:
+          create: post /docs/search-click
+      v2:
+        subresources:
+          pages:
+            methods:
+              list: get /docs/v2/pages
+              retrieve: get /docs/v2/pages/{slug}
+  enterprise:
+    subresources:
+      inquire:
+        methods:
+          create: post /enterprise/inquire
+      org:
+        subresources:
+          contract:
+            methods:
+              getContract: get /enterprise/org/{orgId}/contract
+          invoices:
+            methods:
+              getInvoices: get /enterprise/org/{orgId}/invoices
+          onboarding:
+            methods:
+              getOnboarding: get /enterprise/org/{orgId}/onboarding
+              onboarding: patch /enterprise/org/{orgId}/onboarding
+          usage:
+            methods:
+              getHistory: get /enterprise/org/{orgId}/usage/history
+              getProjects: get /enterprise/org/{orgId}/usage/projects
+              getUsage: get /enterprise/org/{orgId}/usage
+      quotes:
+        methods:
+          retrieve: get /enterprise/quotes/{quoteId}
+        subresources:
+          accept:
+            methods:
+              accept: post /enterprise/quotes/{quoteId}/accept
+      subdomain:
+        methods:
+          retrieve: get /enterprise/subdomain/{subdomain}
+  entitlements:
+    subresources:
+      org:
+        methods:
+          retrieve: get /entitlements/org/{orgId}
+        subresources:
+          check:
+            methods:
+              check: post /entitlements/org/{orgId}/check
+  functions:
+    methods:
+      create: post /functions/
+      delete: delete /functions/{functionId}
+      retrieve: get /functions/{functionId}
+      update: patch /functions/{functionId}
+    subresources:
+      deployStatus:
+        methods:
+          getDeployStatus: get /functions/{functionId}/deploy-status
+      invocations:
+        methods:
+          getInvocations: get /functions/{functionId}/invocations
+          list: get /functions/invocations
+        subresources:
+          function:
+            methods:
+              retrieve: get /functions/invocations/function/{functionId}
+      invoke:
+        methods:
+          invoke: post /functions/{functionIdOrName}/invoke
+      logs:
+        methods:
+          getLogs: get /functions/{functionId}/logs
+      metrics:
+        methods:
+          getMetrics: get /functions/{functionId}/metrics
+      project:
+        methods:
+          retrieve: get /functions/project/{projectId}
+        subresources:
+          name:
+            methods:
+              retrieve: get /functions/project/{projectId}/name/{functionName}
+      schedule:
+        methods:
+          getSchedule: get /functions/{functionId}/schedule
+          schedule: put /functions/{functionId}/schedule
+          schedule2: delete /functions/{functionId}/schedule
+      secrets:
+        methods:
+          create: post /functions/secrets
+          delete: delete /functions/secrets/{secretId}
+          update: put /functions/secrets/{secretId}
+        subresources:
+          project:
+            methods:
+              retrieve: get /functions/secrets/project/{projectId}
+          value:
+            methods:
+              getValue: get /functions/secrets/{secretId}/value
+      source:
+        methods:
+          source: put /functions/{functionId}/source
+      triggers:
+        methods:
+          delete: delete /functions/triggers/{triggerId}
+          getTriggers: get /functions/{functionId}/triggers
+          triggers: post /functions/{functionId}/triggers
+  generated:
+    methods:
+      create: post /generated/{table}
+      delete: delete /generated/{table}/{id}
+      retrieve: get /generated/{table}
+      retrieve2: get /generated/{table}/{id}
+      update: patch /generated/{table}/{id}
+    subresources:
+      aggregate:
+        methods:
+          getAggregate: get /generated/{table}/aggregate
+      bulk:
+        methods:
+          bulk: post /generated/{table}/bulk
+          bulk2: patch /generated/{table}/bulk
+          bulk3: delete /generated/{table}/bulk
+      query:
+        methods:
+          query: post /generated/{table}/query
+      search:
+        methods:
+          getSearch: get /generated/{table}/search
+  github:
+    subresources:
+      oauth:
+        subresources:
+          authorize:
+            methods:
+              list: get /github/oauth/authorize
+          callback:
+            methods:
+              list: get /github/oauth/callback
+  incidents:
+    subresources:
+      ack:
+        methods:
+          ack: post /incidents/{incidentId}/ack
+      bulk:
+        methods:
+          create: post /incidents/bulk
+      project:
+        methods:
+          retrieve: get /incidents/project/{projectId}
+      resolve:
+        methods:
+          resolve: post /incidents/{incidentId}/resolve
+  infrastructure:
+    subresources:
+      pollStatus:
+        methods:
+          create: post /infrastructure/poll-status
+      sizes:
+        methods:
+          list: get /infrastructure/sizes
+  integrations:
+    subresources:
+      analytics:
+        subresources:
+          project:
+            subresources:
+              events:
+                methods:
+                  getEvents: get /integrations/analytics/project/{projectId}/events
+              stats:
+                methods:
+                  getStats: get /integrations/analytics/project/{projectId}/stats
+      deliveries:
+        subresources:
+          event:
+            methods:
+              retrieve: get /integrations/deliveries/event/{eventId}
+          retry:
+            methods:
+              retry: post /integrations/deliveries/{deliveryId}/retry
+          subscription:
+            methods:
+              retrieve: get /integrations/deliveries/subscription/{subscriptionId}
+      dlq:
+        subresources:
+          project:
+            methods:
+              retrieve: get /integrations/dlq/project/{projectId}
+      subscriptions:
+        methods:
+          create: post /integrations/subscriptions
+          delete: delete /integrations/subscriptions/{id}
+          update: patch /integrations/subscriptions/{id}
+        subresources:
+          project:
+            methods:
+              retrieve: get /integrations/subscriptions/project/{projectId}
+          test:
+            methods:
+              test: post /integrations/subscriptions/{id}/test
+  jobs:
+    subresources:
+      dlq:
+        subresources:
+          project:
+            methods:
+              retrieve: get /jobs/dlq/project/{projectId}
+      webhooks:
+        subresources:
+          delivery:
+            methods:
+              retrieve: get /jobs/webhooks/delivery/{deliveryId}
+          project:
+            methods:
+              retrieve: get /jobs/webhooks/project/{projectId}
+  logs:
+    subresources:
+      project:
+        methods:
+          retrieve: get /logs/project/{projectId}
+        subresources:
+          stream:
+            methods:
+              getStream: get /logs/project/{projectId}/stream
+  maintenance:
+    methods:
+      list: get /maintenance
+  metrics:
+    subresources:
+      org:
+        methods:
+          retrieve: get /metrics/org/{orgId}
+      project:
+        methods:
+          retrieve: get /metrics/project/{projectId}
+        subresources:
+          overview:
+            methods:
+              getOverview: get /metrics/project/{projectId}/overview
+  mongodb:
+    subresources:
+      aggregate:
+        methods:
+          aggregate: post /mongodb/{collection}/aggregate
+          cursor: post /mongodb/{collection}/aggregate/cursor
+      bulkWrite:
+        methods:
+          bulkWrite: post /mongodb/{collection}/bulkWrite
+      collections:
+        methods:
+          create: post /mongodb/collections
+          delete: delete /mongodb/collections/{name}
+          list: get /mongodb/collections
+        subresources:
+          rename:
+            methods:
+              rename: post /mongodb/collections/{name}/rename
+      command:
+        methods:
+          create: post /mongodb/command
+      count:
+        methods:
+          count: post /mongodb/{collection}/count
+      cursor:
+        subresources:
+          close:
+            methods:
+              close: post /mongodb/{collection}/cursor/{cursorId}/close
+          next:
+            methods:
+              next: post /mongodb/{collection}/cursor/{cursorId}/next
+      deleteMany:
+        methods:
+          deleteMany: post /mongodb/{collection}/deleteMany
+      deleteOne:
+        methods:
+          deleteOne: post /mongodb/{collection}/deleteOne
+      distinct:
+        methods:
+          distinct: post /mongodb/{collection}/distinct
+      estimatedCount:
+        methods:
+          getEstimatedCount: get /mongodb/{collection}/estimatedCount
+      find:
+        methods:
+          cursor: post /mongodb/{collection}/find/cursor
+          find: post /mongodb/{collection}/find
+      findById:
+        methods:
+          retrieve: get /mongodb/{collection}/findById/{id}
+      findOne:
+        methods:
+          findOne: post /mongodb/{collection}/findOne
+      findOneAndDelete:
+        methods:
+          findOneAndDelete: post /mongodb/{collection}/findOneAndDelete
+      findOneAndReplace:
+        methods:
+          findOneAndReplace: post /mongodb/{collection}/findOneAndReplace
+      findOneAndUpdate:
+        methods:
+          findOneAndUpdate: post /mongodb/{collection}/findOneAndUpdate
+      indexes:
+        methods:
+          delete: delete /mongodb/{collection}/indexes/{indexName}
+          getIndexes: get /mongodb/{collection}/indexes
+          indexes: post /mongodb/{collection}/indexes
+      insertMany:
+        methods:
+          insertMany: post /mongodb/{collection}/insertMany
+      insertOne:
+        methods:
+          insertOne: post /mongodb/{collection}/insertOne
+      replaceOne:
+        methods:
+          replaceOne: post /mongodb/{collection}/replaceOne
+      updateMany:
+        methods:
+          updateMany: post /mongodb/{collection}/updateMany
+      updateOne:
+        methods:
+          updateOne: post /mongodb/{collection}/updateOne
+  oauth:
+    subresources:
+      callback:
+        methods:
+          create: post /oauth/callback
+      org:
+        methods:
+          retrieve: get /oauth/org/{orgId}
+        subresources:
+          configure:
+            methods:
+              configure: post /oauth/org/{orgId}/configure
+          provider:
+            methods:
+              delete: delete /oauth/org/{orgId}/provider/{provider}
+              update: patch /oauth/org/{orgId}/provider/{provider}
+            subresources:
+              authorize:
+                methods:
+                  getAuthorize: get /oauth/org/{orgId}/provider/{provider}/authorize
+              refresh:
+                methods:
+                  refresh: post /oauth/org/{orgId}/provider/{provider}/refresh
+  onboarding:
+    subresources:
+      org:
+        methods:
+          retrieve: get /onboarding/org/{orgId}
+        subresources:
+          autoSetup:
+            methods:
+              autoSetup: post /onboarding/org/{orgId}/auto-setup
+          completeStep:
+            methods:
+              completeStep: post /onboarding/org/{orgId}/complete-step
+  openapi:
+    subresources:
+      full:
+        methods:
+          list: get /openapi/full
+      project:
+        methods:
+          retrieve: get /openapi/project/{projectId}
+  orgs:
+    methods:
+      create: post /orgs/
+      list: get /orgs/
+    subresources:
+      billingContacts:
+        methods:
+          billingContacts: post /orgs/{orgId}/billing-contacts
+          delete: delete /orgs/{orgId}/billing-contacts/{contactId}
+          getBillingContacts: get /orgs/{orgId}/billing-contacts
+      checkName:
+        methods:
+          list: get /orgs/check-name
+      invites:
+        methods:
+          delete: delete /orgs/{orgId}/invites/{inviteId}
+          getInvites: get /orgs/{orgId}/invites
+        subresources:
+          accept:
+            methods:
+              create: post /orgs/invites/accept
+      members:
+        methods:
+          getMembers: get /orgs/{orgId}/members
+          invite: post /orgs/{orgId}/members/invite
+      membership:
+        methods:
+          getMembership: get /orgs/{orgId}/membership
+      profile:
+        methods:
+          getProfile: get /orgs/{orgId}/profile
+          profile: patch /orgs/{orgId}/profile
+  plans:
+    methods:
+      retrieve: get /plans/{planId}
+    subresources:
+      apply:
+        methods:
+          create: post /plans/apply
+      org:
+        methods:
+          retrieve: get /plans/org/{orgId}
+      save:
+        methods:
+          create: post /plans/save
+  pricing:
+    subresources:
+      aiFeatures:
+        methods:
+          list: get /pricing/ai-features
+      compare:
+        methods:
+          list: get /pricing/compare
+      enterprise:
+        methods:
+          list: get /pricing/enterprise
+      plans:
+        methods:
+          list: get /pricing/plans
+          retrieve: get /pricing/plans/{plan}
+  projects:
+    methods:
+      create: post /projects/
+      delete: delete /projects/{projectId}
+      list: get /projects/
+      retrieve: get /projects/{projectId}
+      update: patch /projects/{projectId}
+    subresources:
+      apiKeys:
+        methods:
+          apiKeys: post /projects/{projectId}/api-keys
+          getApiKeys: get /projects/{projectId}/api-keys
+          update: patch /projects/{projectId}/api-keys/{keyId}
+        subresources:
+          revoke:
+            methods:
+              revoke: post /projects/{projectId}/api-keys/{keyId}/revoke
+          rotate:
+            methods:
+              rotate: post /projects/{projectId}/api-keys/{keyId}/rotate
+      auth:
+        methods:
+          confirm: post /projects/{projectId}/auth/verify-email/confirm
+          delete: delete /projects/{projectId}/auth/oauth-apps/{provider}
+          forgotPassword: post /projects/{projectId}/auth/forgot-password
+          getMe: get /projects/{projectId}/auth/me
+          getOauthApps: get /projects/{projectId}/auth/oauth-apps
+          getSettings: get /projects/{projectId}/auth/settings
+          login: post /projects/{projectId}/auth/login
+          logout: post /projects/{projectId}/auth/logout
+          refresh: post /projects/{projectId}/auth/refresh
+          resetPassword: post /projects/{projectId}/auth/reset-password
+          send: post /projects/{projectId}/auth/verify-email/send
+          settings: patch /projects/{projectId}/auth/settings
+          signup: post /projects/{projectId}/auth/signup
+          syncUsers: post /projects/{projectId}/auth/sync-users
+          update: put /projects/{projectId}/auth/oauth-apps/{provider}
+      database:
+        methods:
+          dedicated: post /projects/{projectId}/database/dedicated
+          dedicated2: delete /projects/{projectId}/database/dedicated
+          getConnection: get /projects/{projectId}/database/dedicated/connection
+          getDedicated: get /projects/{projectId}/database/dedicated
+          getStatus: get /projects/{projectId}/database/dedicated/status
+          restart: post /projects/{projectId}/database/dedicated/restart
+      envVars:
+        methods:
+          delete: delete /projects/{projectId}/env-vars/{envVarId}
+          envVars: post /projects/{projectId}/env-vars
+          getEnvVars: get /projects/{projectId}/env-vars
+          update: patch /projects/{projectId}/env-vars/{envVarId}
+        subresources:
+          value:
+            methods:
+              getValue: get /projects/{projectId}/env-vars/{envVarId}/value
+      environments:
+        methods:
+          backfillUrls: post /projects/{projectId}/environments/backfill-urls
+          bootstrap: post /projects/{projectId}/environments/bootstrap
+          delete: delete /projects/{projectId}/environments/{envId}
+          environments: post /projects/{projectId}/environments
+          getEnvironments: get /projects/{projectId}/environments
+          update: patch /projects/{projectId}/environments/{envId}
+        subresources:
+          domainStatus:
+            methods:
+              getDomainStatus: get /projects/{projectId}/environments/{envId}/domain-status
+          domainVerification:
+            methods:
+              getDomainVerification: get /projects/{projectId}/environments/{envId}/domain-verification
+          provisionSsl:
+            methods:
+              provisionSsl: post /projects/{projectId}/environments/{envId}/provision-ssl
+          verifyCname:
+            methods:
+              verifyCname: post /projects/{projectId}/environments/{envId}/verify-cname
+          verifyDomain:
+            methods:
+              verifyDomain: post /projects/{projectId}/environments/{envId}/verify-domain
+      github:
+        methods:
+          branch: post /projects/{projectId}/github/branch
+          connect: post /projects/{projectId}/github/connect
+          disconnect: delete /projects/{projectId}/github/disconnect
+          getBranches: get /projects/{projectId}/github/branches
+          getRepos: get /projects/{projectId}/github/repos
+          getStatus: get /projects/{projectId}/github/status
+          getTrackedRepos: get /projects/{projectId}/github/tracked-repos
+          pull: post /projects/{projectId}/github/pull
+          push: post /projects/{projectId}/github/push
+      infrastructure:
+        methods:
+          delete: delete /projects/{projectId}/infrastructure/{instanceId}
+          getInfrastructure: get /projects/{projectId}/infrastructure
+          getMigrationStatus: get /projects/{projectId}/infrastructure/migration-status
+          getProgress: get /projects/{projectId}/infrastructure/migration/progress
+          provision: post /projects/{projectId}/infrastructure/provision
+          provisionCustom: post /projects/{projectId}/infrastructure/provision-custom
+          retry: post /projects/{projectId}/infrastructure/migration/retry
+          rollback: post /projects/{projectId}/infrastructure/migration/rollback
+        subresources:
+          metrics:
+            methods:
+              getMetrics: get /projects/{projectId}/infrastructure/{instanceId}/metrics
+          migrateNow:
+            methods:
+              migrateNow: post /projects/{projectId}/infrastructure/{instanceId}/migrate-now
+          replica:
+            methods:
+              replica: post /projects/{projectId}/infrastructure/{instanceId}/replica
+          replicas:
+            methods:
+              getReplicas: get /projects/{projectId}/infrastructure/{instanceId}/replicas
+          resize:
+            methods:
+              resize: post /projects/{projectId}/infrastructure/{instanceId}/resize
+          resizeCustom:
+            methods:
+              resizeCustom: post /projects/{projectId}/infrastructure/{instanceId}/resize-custom
+          start:
+            methods:
+              start: post /projects/{projectId}/infrastructure/{instanceId}/start
+          stop:
+            methods:
+              stop: post /projects/{projectId}/infrastructure/{instanceId}/stop
+          upgradeOptions:
+            methods:
+              getUpgradeOptions: get /projects/{projectId}/infrastructure/{instanceId}/upgrade-options
+      members:
+        methods:
+          delete: delete /projects/{projectId}/members/{userId}
+          getMembers: get /projects/{projectId}/members
+          members: post /projects/{projectId}/members
+      region:
+        methods:
+          getRegion: get /projects/{projectId}/region
+          region: post /projects/{projectId}/region
+      settings:
+        methods:
+          addons: patch /projects/{projectId}/settings/addons
+          api: patch /projects/{projectId}/settings/api
+          compute: patch /projects/{projectId}/settings/compute
+          getAddons: get /projects/{projectId}/settings/addons
+          getApi: get /projects/{projectId}/settings/api
+          getCompute: get /projects/{projectId}/settings/compute
+          getJwt: get /projects/{projectId}/settings/jwt
+          getSettings: get /projects/{projectId}/settings
+          jwt: patch /projects/{projectId}/settings/jwt
+          rotate: post /projects/{projectId}/settings/jwt/rotate
+      storage:
+        methods:
+          getSettings: get /projects/{projectId}/storage/settings
+          settings: patch /projects/{projectId}/storage/settings
+      terminal:
+        methods:
+          exec: post /projects/{projectId}/terminal/exec
+          getSessions: get /projects/{projectId}/terminal/sessions
+      users:
+        methods:
+          delete: delete /projects/{projectId}/users/{userId}
+          getUsers: get /projects/{projectId}/users
+          retrieve: get /projects/{projectId}/users/{userId}
+          update: patch /projects/{projectId}/users/{userId}
+          users: post /projects/{projectId}/users
+        subresources:
+          ban:
+            methods:
+              ban: post /projects/{projectId}/users/{userId}/ban
+          sessions:
+            methods:
+              delete: delete /projects/{projectId}/users/{userId}/sessions/{sessionId}
+              getSessions: get /projects/{projectId}/users/{userId}/sessions
+              revokeAll: post /projects/{projectId}/users/{userId}/sessions/revoke-all
+          unban:
+            methods:
+              unban: post /projects/{projectId}/users/{userId}/unban
+  quickstart:
+    subresources:
+      project:
+        methods:
+          retrieve: get /quickstart/project/{projectId}
+        subresources:
+          json:
+            methods:
+              getJson: get /quickstart/project/{projectId}/json
+  realtime:
+    subresources:
+      connections:
+        subresources:
+          project:
+            methods:
+              retrieve: get /realtime/connections/project/{projectId}
+      enableAll:
+        methods:
+          create: post /realtime/enable-all
+      events:
+        subresources:
+          project:
+            methods:
+              retrieve: get /realtime/events/project/{projectId}
+      install:
+        methods:
+          create: post /realtime/install
+      stats:
+        subresources:
+          project:
+            methods:
+              retrieve: get /realtime/stats/project/{projectId}
+      status:
+        subresources:
+          project:
+            methods:
+              retrieve: get /realtime/status/project/{projectId}
+      subscriptions:
+        subresources:
+          project:
+            methods:
+              retrieve: get /realtime/subscriptions/project/{projectId}
+  refunds:
+    methods:
+      retrieve: get /refunds/{id}
+    subresources:
+      org:
+        methods:
+          retrieve: get /refunds/org/{orgId}
+  regions:
+    methods:
+      create: post /regions/
+      list: get /regions/
+      retrieve: get /regions/{key}
+      update: patch /regions/{key}
+    subresources:
+      all:
+        methods:
+          list: get /regions/all
+      health:
+        methods:
+          list: get /regions/health
+        subresources:
+          check:
+            methods:
+              create: post /regions/health/check
+      metrics:
+        methods:
+          getMetrics: get /regions/{key}/metrics
+  rls:
+    subresources:
+      policies:
+        methods:
+          create: post /rls/policies/{projectId}
+          delete: delete /rls/policies/{policyId}
+          retrieve: get /rls/policies/{projectId}
+          update: patch /rls/policies/{policyId}
+        subresources:
+          toggle:
+            methods:
+              toggle: post /rls/policies/{policyId}/toggle
+  schemaEngine:
+    subresources:
+      apply:
+        methods:
+          create: post /schema-engine/apply
+      changes:
+        methods:
+          getChanges: get /schema-engine/{projectId}/changes
+      introspect:
+        methods:
+          retrieve: get /schema-engine/introspect/{projectId}
+      migrations:
+        subresources:
+          project:
+            methods:
+              retrieve: get /schema-engine/migrations/project/{projectId}
+      preview:
+        methods:
+          create: post /schema-engine/preview
+      query:
+        methods:
+          create: post /schema-engine/query/{projectId}
+  schemas:
+    methods:
+      create: post /schemas/
+    subresources:
+      project:
+        methods:
+          retrieve: get /schemas/project/{projectId}
+  sdk:
+    subresources:
+      generate:
+        methods:
+          create: post /sdk/generate
+  security:
+    subresources:
+      audit:
+        methods:
+          retrieve: get /security/audit/{projectId}
+      overview:
+        methods:
+          retrieve: get /security/overview/{projectId}
+  sso:
+    subresources:
+      org:
+        methods:
+          retrieve: get /sso/org/{orgId}
+        subresources:
+          configure:
+            methods:
+              configure: post /sso/org/{orgId}/configure
+  status:
+    methods:
+      list: get /status
+    subresources:
+      atom:
+        methods:
+          list: get /status/atom
+      incidents:
+        methods:
+          list: get /status/incidents
+      rss:
+        methods:
+          list: get /status/rss
+      subscribe:
+        methods:
+          create: post /status/subscribe
+      subscribers:
+        subresources:
+          count:
+            methods:
+              list: get /status/subscribers/count
+      unsubscribe:
+        methods:
+          retrieve: get /status/unsubscribe/{token}
+      uptime:
+        methods:
+          retrieve: get /status/uptime/{componentId}
+  storage:
+    subresources:
+      buckets:
+        methods:
+          create: post /storage/buckets
+          list: get /storage/buckets
+        subresources:
+          policies:
+            methods:
+              delete: delete /storage/buckets/{bucketId}/policies/{policyId}
+              getPolicies: get /storage/buckets/{bucketId}/policies
+              policies: post /storage/buckets/{bucketId}/policies
+              update: put /storage/buckets/{bucketId}/policies/{policyId}
+            subresources:
+              toggle:
+                methods:
+                  toggle: post /storage/buckets/{bucketId}/policies/{policyId}/toggle
+      download:
+        methods:
+          list: get /storage/download
+      downloadUrl:
+        methods:
+          create: post /storage/download-url
+      files:
+        subresources:
+          copy:
+            methods:
+              create: post /storage/files/copy
+          deleteBatch:
+            methods:
+              create: post /storage/files/delete-batch
+          metadata:
+            methods:
+              getMetadata: get /storage/files/{bucketId}/metadata
+              metadata: patch /storage/files/{bucketId}/metadata
+          move:
+            methods:
+              create: post /storage/files/move
+      multipart:
+        subresources:
+          abort:
+            methods:
+              abort: post /storage/multipart/{uploadId}/abort
+          complete:
+            methods:
+              complete: post /storage/multipart/{uploadId}/complete
+          create:
+            methods:
+              create: post /storage/multipart/create
+          partUrl:
+            methods:
+              partUrl: post /storage/multipart/{uploadId}/part-url
+      public:
+        methods:
+          retrieve: get /storage/public/{projectId}/{bucketName}/{*}
+      transform:
+        methods:
+          retrieve: get /storage/transform/{projectId}/{bucketName}/{*}
+      upload:
+        methods:
+          create: post /storage/upload
+      uploadBase64:
+        methods:
+          create: post /storage/upload-base64
+      uploadFromUrl:
+        methods:
+          create: post /storage/upload-from-url
+      uploadUrl:
+        methods:
+          create: post /storage/upload-url
+  templates:
+    methods:
+      create: post /templates/
+      list: get /templates/
+      retrieve: get /templates/{slug}
+    subresources:
+      createProject:
+        methods:
+          create: post /templates/create-project
+      install:
+        subresources:
+          apply:
+            methods:
+              create: post /templates/install/apply
+          preview:
+            methods:
+              create: post /templates/install/preview
+          rollback:
+            methods:
+              rollback: post /templates/install/{installId}/rollback
+  users:
+    subresources:
+      me:
+        methods:
+          list: get /users/me
+          update: patch /users/me
+        subresources:
+          changePassword:
+            methods:
+              create: post /users/me/change-password
+          preferences:
+            methods:
+              list: get /users/me/preferences
+              update: patch /users/me/preferences
+          requestAccountDelete:
+            methods:
+              create: post /users/me/request-account-delete
+  v1:
+    subresources:
+      health:
+        methods:
+          list: get /v1/health
+      project:
+        methods:
+          list: get /v1/project
