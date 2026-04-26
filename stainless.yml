@@ -31,8 +31,8 @@ targets:
     publish:
       npm: true
   python:
-    package_name: vaif-client
-    project_name: vaif-client
+    package_name: vaif
+    project_name: vaif
     production_repo: VAIF-TECH/vaif-python
     publish:
       pypi: true
