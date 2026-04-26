@@ -78,9 +78,10 @@ resources:
           execute:
             methods:
               create: post /ai/copilot/execute
-          execution:
+          executions:
             methods:
               retrieve: get /ai/copilot/execution/{executionId}
+              retrieve2: get /ai/copilot/executions/{sessionId}
             subresources:
               pause:
                 methods:
@@ -91,9 +92,6 @@ resources:
               rollback:
                 methods:
                   rollback: post /ai/copilot/execution/{executionId}/rollback
-          executions:
-            methods:
-              retrieve: get /ai/copilot/executions/{sessionId}
           export:
             methods:
               create: post /ai/copilot/export/{versionId}
@@ -128,12 +126,12 @@ resources:
                   create: post /ai/copilot/generation/resume
           git:
             subresources:
-              branch:
-                methods:
-                  create: post /ai/copilot/git/branch
               branches:
                 methods:
                   retrieve: get /ai/copilot/git/branches/{sessionId}
+              branchs:
+                methods:
+                  create: post /ai/copilot/git/branch
               clone:
                 methods:
                   create: post /ai/copilot/git/clone
@@ -155,9 +153,6 @@ resources:
               push:
                 methods:
                   create: post /ai/copilot/git/push
-              read:
-                methods:
-                  retrieve: get /ai/copilot/git/read/{sessionId}/{*}
               status:
                 methods:
                   retrieve: get /ai/copilot/git/status/{sessionId}
@@ -203,14 +198,12 @@ resources:
           rate:
             methods:
               create: post /ai/copilot/rate/{messageId}
-          session:
-            methods:
-              delete: delete /ai/copilot/session/{sessionId}
-              retrieve: get /ai/copilot/session/{sessionId}
-              update: patch /ai/copilot/session/{sessionId}
           sessions:
             methods:
+              delete: delete /ai/copilot/session/{sessionId}
               retrieve: get /ai/copilot/sessions/{projectId}
+              retrieve2: get /ai/copilot/session/{sessionId}
+              update: patch /ai/copilot/session/{sessionId}
           trainingConsent:
             methods:
               create: post /ai/copilot/training-consent/{sessionId}
@@ -220,16 +213,14 @@ resources:
           usageOrg:
             methods:
               retrieve: get /ai/copilot/usage-org/{orgId}
-          version:
+          versions:
             methods:
-              retrieve: get /ai/copilot/version/{versionId}
+              retrieve: get /ai/copilot/versions/{sessionId}
+              retrieve2: get /ai/copilot/version/{versionId}
             subresources:
               diff:
                 methods:
                   retrieve: get /ai/copilot/version/{versionId}/diff/{compareVersionId}
-          versions:
-            methods:
-              retrieve: get /ai/copilot/versions/{sessionId}
   aiUsage:
     subresources:
       org:
@@ -1155,12 +1146,10 @@ resources:
           migrateNow:
             methods:
               migrateNow: post /projects/{projectId}/infrastructure/{instanceId}/migrate-now
-          replica:
-            methods:
-              replica: post /projects/{projectId}/infrastructure/{instanceId}/replica
           replicas:
             methods:
               getReplicas: get /projects/{projectId}/infrastructure/{instanceId}/replicas
+              replica: post /projects/{projectId}/infrastructure/{instanceId}/replica
           resize:
             methods:
               resize: post /projects/{projectId}/infrastructure/{instanceId}/resize
@@ -1435,12 +1424,6 @@ resources:
           partUrl:
             methods:
               partUrl: post /storage/multipart/{uploadId}/part-url
-      public:
-        methods:
-          retrieve: get /storage/public/{projectId}/{bucketName}/{*}
-      transform:
-        methods:
-          retrieve: get /storage/transform/{projectId}/{bucketName}/{*}
       upload:
         methods:
           create: post /storage/upload
