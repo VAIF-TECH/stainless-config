@@ -11,10 +11,12 @@ client_settings:
   opts:
     api_key:
       type: string
+      nullable: true
       auth:
         security_scheme: ApiKeyAuth
     bearer_token:
       type: string
+      nullable: true
       auth:
         security_scheme: BearerAuth
 
