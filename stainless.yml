@@ -24,6 +24,22 @@ security:
   - ApiKeyAuth: []
   - BearerAuth: []
 
+targets:
+  typescript:
+    package_name: "@vaif-tech/client"
+    production_repo: VAIF-TECH/vaif-js
+    publish:
+      npm: true
+  python:
+    package_name: vaif-client
+    project_name: vaif-client
+    production_repo: VAIF-TECH/vaif-python
+    publish:
+      pypi: true
+  swift:
+    package_name: VaifClient
+    production_repo: VAIF-TECH/vaif-swift
+
 environments:
   production: https://api.vaif.studio
 
