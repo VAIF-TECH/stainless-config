@@ -36,9 +36,6 @@ targets:
     production_repo: VAIF-TECH/vaif-python
     publish:
       pypi: true
-  swift:
-    package_name: VaifClient
-    production_repo: VAIF-TECH/vaif-swift
 
 environments:
   production: https://api.vaif.studio
