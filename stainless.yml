@@ -26,7 +26,7 @@ security:
 
 targets:
   typescript:
-    package_name: "@vaif-tech/client"
+    package_name: "@vaif/client"
     production_repo: VAIF-TECH/vaif-js
     publish:
       npm: true
