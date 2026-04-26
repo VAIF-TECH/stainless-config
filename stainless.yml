@@ -128,10 +128,8 @@ resources:
             subresources:
               branches:
                 methods:
-                  retrieve: get /ai/copilot/git/branches/{sessionId}
-              branchs:
-                methods:
                   create: post /ai/copilot/git/branch
+                  retrieve: get /ai/copilot/git/branches/{sessionId}
               clone:
                 methods:
                   create: post /ai/copilot/git/clone
