@@ -15,8 +15,26 @@ client_settings:
         security_scheme: ApiKeyAuth
 
 environments:
-  production:
-    url: https://api.vaif.studio
+  production: https://api.vaif.studio
+
+readme:
+  example_requests:
+    default:
+      type: request
+      endpoint: post /auth/login
+      params:
+        email: alice@example.com
+        password: secret-password
+    headline:
+      type: request
+      endpoint: post /auth/login
+      params:
+        email: alice@example.com
+        password: secret-password
+    pagination:
+      type: request
+      endpoint: get /v1/project
+      params: {}
 
 resources:
   activation:
