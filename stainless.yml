@@ -30,6 +30,8 @@ targets:
     production_repo: VAIF-TECH/vaif-js
     publish:
       npm: true
+    options:
+      enable_treeshaking: true
   python:
     package_name: vaif
     project_name: vaif
