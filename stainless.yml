@@ -5,7 +5,7 @@
 organization:
   name: vaif
   docs: https://docs.vaif.studio
-  contact: support@vaif.tech
+  contact: support@vaif.studio
 
 client_settings:
   opts:
@@ -38,6 +38,24 @@ targets:
     production_repo: VAIF-TECH/vaif-python
     publish:
       pypi: true
+  swift:
+    package_name: VaifClient
+    production_repo: VAIF-TECH/vaif-swift
+    publish:
+      swift_pm: true
+    options:
+      platforms:
+        - "iOS 16+"
+        - "macOS 13+"
+        - "watchOS 9+"
+        - "visionOS 1+"
+      swift_versions: ["5.9", "5.10", "6.0"]
+      concurrency: true
+  go:
+    module_path: github.com/VAIF-TECH/vaif-go
+    production_repo: VAIF-TECH/vaif-go
+    publish:
+      go_modules: true
 
 environments:
   production: https://api.vaif.studio
