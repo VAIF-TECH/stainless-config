@@ -24,6 +24,18 @@ security:
   - ApiKeyAuth: []
   - BearerAuth: []
 
+# Explicit model names for inline schemas Stainless can't auto-name.
+#
+# - `CliTokenPendingResponse` / `CliTokenSuccessResponse` are the two
+#   variants of the discriminated union returned by POST /auth/cli/token.
+#   Without explicit names, Stainless generates the same identifier for
+#   both, producing a name clash that prevents the Go SDK from compiling.
+models:
+  CliTokenPendingResponse:
+    schema_ref: "#/paths/%2Fauth%2Fcli%2Ftoken/post/responses/200/content/application%2Fjson/schema/anyOf/0"
+  CliTokenSuccessResponse:
+    schema_ref: "#/paths/%2Fauth%2Fcli%2Ftoken/post/responses/200/content/application%2Fjson/schema/anyOf/1"
+
 targets:
   typescript:
     package_name: "@vaif/client"

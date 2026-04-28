@@ -12157,7 +12157,8 @@
                         "ok",
                         "status"
                       ],
-                      "additionalProperties": false
+                      "additionalProperties": false,
+                      "description": "CLI auth token poll: still pending — the user hasn't approved the device yet."
                     },
                     {
                       "type": "object",
@@ -12201,7 +12202,8 @@
                         "expiresIn",
                         "user"
                       ],
-                      "additionalProperties": false
+                      "additionalProperties": false,
+                      "description": "CLI auth token poll: approved — token issued, login complete."
                     }
                   ]
                 }
