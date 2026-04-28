@@ -52,7 +52,7 @@ targets:
       swift_versions: ["5.9", "5.10", "6.0"]
       concurrency: true
   go:
-    module_path: github.com/VAIF-TECH/vaif-go
+    package_name: vaif
     production_repo: VAIF-TECH/vaif-go
     publish:
       go_modules: true
