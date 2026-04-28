@@ -31,10 +31,8 @@ security:
 #   Without explicit names, Stainless generates the same identifier for
 #   both, producing a name clash that prevents the Go SDK from compiling.
 models:
-  CliTokenPendingResponse:
-    schema_ref: "#/paths/%2Fauth%2Fcli%2Ftoken/post/responses/200/content/application%2Fjson/schema/anyOf/0"
-  CliTokenSuccessResponse:
-    schema_ref: "#/paths/%2Fauth%2Fcli%2Ftoken/post/responses/200/content/application%2Fjson/schema/anyOf/1"
+  CliTokenPendingResponse: "#/components/schemas/AuthCliTokenPost200Variant0"
+  CliTokenSuccessResponse: "#/components/schemas/AuthCliTokenPost200Variant1"
 
 targets:
   typescript:
